@@ -1,103 +1,160 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Link from "next/link";
+import { Github, Linkedin, Mail } from "lucide-react";
+
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <main className="min-h-screen px-6 md:px-20 py-12 space-y-28">
+      {/* Hero Section */}
+      <section className="text-center space-y-6">
+        <img
+          src="/profile.jpg"
+          alt="Vishesh Sharma"
+          className="w-32 h-32 rounded-full mx-auto border-2 border-purple-500 shadow-lg object-cover"
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+          Hello, I'm <span className="text-purple-500">Vishesh Sharma</span>
+        </h1>
+        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+          A passionate React Native developer with 3 years of experience
+          building modern, beautiful mobile apps. Currently diving deeper into
+          Node.js and backend development.
+        </p>
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/Vishesh_Sharma_Resume.pdf"
+            download
+            className="border border-purple-500 text-purple-400 hover:bg-purple-600 hover:text-white px-4 py-2 rounded transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            📄 Download Resume
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="flex flex-wrap justify-center gap-4 mt-6">
+          <Link
+            href="https://github.com/iamVisheshSharma"
+            className="border border-purple-500 text-purple-400 hover:bg-purple-600 hover:text-white px-4 py-2 rounded transition"
           >
-            Read our docs
-          </a>
+            <Github className="inline mr-2" /> GitHub
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/sharmavishesh07/"
+            className="border border-purple-500 text-purple-400 hover:bg-purple-600 hover:text-white px-4 py-2 rounded transition"
+          >
+            <Linkedin className="inline mr-2" /> LinkedIn
+          </Link>
+          <Link
+            href="mailto:vishesh@example.com"
+            className="border border-purple-500 text-purple-400 hover:bg-purple-600 hover:text-white px-4 py-2 rounded transition"
+          >
+            <Mail className="inline mr-2" /> Contact
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="space-y-4 max-w-4xl mx-auto text-center">
+        <h2 className="text-3xl font-bold text-purple-400">About Me</h2>
+        <p className="text-gray-300">
+          I'm a mobile-first developer who crafts smooth, intuitive user
+          experiences with React Native. Over the years, I've worked on
+          everything from e-commerce to chat and video streaming apps. I love
+          turning complex problems into elegant UI designs and constantly
+          improving my skills.
+        </p>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="max-w-5xl mx-auto">
+        <h2 className="text-3xl font-bold text-purple-400 text-center mb-8">
+          Projects
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <h3 className="text-xl font-semibold text-white">
+              Showshul - Social Commerce
+            </h3>
+            <p className="text-gray-300 mt-2">
+              Redesigned auth flows, integrated voucher system, post creation UI
+              with multi-step navigation, and location tagging using Google
+              Places API.
+            </p>
+          </div>
+          <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <h3 className="text-xl font-semibold text-white">
+              AstroTalk Clone
+            </h3>
+            <p className="text-gray-300 mt-2">
+              Built chat and wallet system for astrologer consultations with
+              real-time billing based on per-minute pricing.
+            </p>
+          </div>
+          <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <h3 className="text-xl font-semibold text-white">
+              MELD Calculator
+            </h3>
+            <p className="text-gray-300 mt-2">
+              A medical tool to calculate liver disease severity using a mobile
+              app UI and Node.js backend. Hosted with cost-effective AI model
+              integration.
+            </p>
+          </div>
+          <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <h3 className="text-xl font-semibold text-white">
+              Bluetooth Sensor Reader
+            </h3>
+            <p className="text-gray-300 mt-2">
+              Native Android app using Kotlin that connects to Arduino device
+              via Bluetooth, reads and displays live sensor data.
+            </p>
+          </div>
+          <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <h3 className="text-xl font-semibold text-white">
+              Sales & Purchase Ledger
+            </h3>
+            <p className="text-gray-300 mt-2">
+              Full-stack app to manage daily business operations, replacing
+              paper ledgers using React Native and Node.js with secure data
+              storage.
+            </p>
+          </div>
+          <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <h3 className="text-xl font-semibold text-white">
+              Chat App with Socket.IO
+            </h3>
+            <p className="text-gray-300 mt-2">
+              Private 1-on-1 real-time chat app using React Native and Node.js
+              backend with PostgreSQL, Prisma, and WebSocket integration.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="max-w-2xl mx-auto text-center">
+        <h2 className="text-3xl font-bold text-purple-400 mb-4">Contact Me</h2>
+        <form className="space-y-4">
+          <input
+            type="text"
+            placeholder="Your Name"
+            className="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <input
+            type="email"
+            placeholder="Your Email"
+            className="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <textarea
+            rows={4}
+            placeholder="Your Message"
+            className="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400"
+          ></textarea>
+          <button
+            type="submit"
+            className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded"
+          >
+            Send Message
+          </button>
+        </form>
+      </section>
+    </main>
   );
 }
