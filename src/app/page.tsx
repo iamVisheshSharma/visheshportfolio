@@ -60,7 +60,7 @@ export default function HomePage() {
         <h2 className="text-3xl font-bold text-purple-400">About Me</h2>
         <p className="text-gray-300">
           I&apos;m a mobile-first developer who crafts smooth, intuitive user
-          experiences with React Native. Over the years, I've worked on
+          experiences with React Native. Over the years, I&apos;ve worked on
           everything from e-commerce to chat and video streaming apps. I love
           turning complex problems into elegant UI designs and constantly
           improving my skills.
