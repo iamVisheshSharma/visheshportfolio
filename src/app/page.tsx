@@ -2,32 +2,37 @@
 
 import Link from "next/link";
 import { Github, Linkedin, Mail } from "lucide-react";
+import Image from "next/image";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen px-6 md:px-20 py-12 space-y-28">
       {/* Hero Section */}
       <section className="text-center space-y-6">
-        <img
+        <Image
           src="/profile.jpg"
           alt="Vishesh Sharma"
-          className="w-32 h-32 rounded-full mx-auto border-2 border-purple-500 shadow-lg object-cover"
+          width={128}
+          height={128}
+          className="w-32 h-32 mx-auto border-4 border-purple-500 shadow-lg object-cover"
+          style={{ clipPath: "circle(40%)", shapeOutside: "circle(45%)" }}
         />
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-          Hello, I'm <span className="text-purple-500">Vishesh Sharma</span>
+          Hello, I&apos;m{" "}
+          <span className="text-purple-500">Vishesh Sharma</span>
         </h1>
         <p className="text-gray-400 max-w-2xl mx-auto text-lg">
           A passionate React Native developer with 3 years of experience
           building modern, beautiful mobile apps. Currently diving deeper into
           Node.js and backend development.
         </p>
-          <a
-            href="/Vishesh_Sharma_Resume.pdf"
-            download
-            className="border border-purple-500 text-purple-400 hover:bg-purple-600 hover:text-white px-4 py-2 rounded transition"
-          >
-            📄 Download Resume
-          </a>
+        <a
+          href="/Vishesh_Sharma_Resume.pdf"
+          download
+          className="border border-purple-500 text-purple-400 hover:bg-purple-600 hover:text-white px-4 py-2 rounded transition"
+        >
+          📄 Download Resume
+        </a>
         <div className="flex flex-wrap justify-center gap-4 mt-6">
           <Link
             href="https://github.com/iamVisheshSharma"
@@ -54,7 +59,7 @@ export default function HomePage() {
       <section id="about" className="space-y-4 max-w-4xl mx-auto text-center">
         <h2 className="text-3xl font-bold text-purple-400">About Me</h2>
         <p className="text-gray-300">
-          I'm a mobile-first developer who crafts smooth, intuitive user
+          I&apos;m a mobile-first developer who crafts smooth, intuitive user
           experiences with React Native. Over the years, I've worked on
           everything from e-commerce to chat and video streaming apps. I love
           turning complex problems into elegant UI designs and constantly
