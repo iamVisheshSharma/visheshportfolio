@@ -3,8 +3,48 @@
 import Link from "next/link";
 import { Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
+import Modal from "react-modal";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
+  const [submitted, setSubmitted] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
+  const projects = [
+    {
+      title: "Showshul - Social Commerce",
+      description:
+        "Voucher system, multi-step post creation UI, location tagging.",
+      tech: ["React Native", "Redux", "Firebase", "Google Place API", 'Amazon IVS', "video-playback"],
+      image: "/projects/showshul.jpeg",
+    },
+    {
+      title: "Service Marketplce Mobile App",
+      description: "Irantasker is a trusted community platform that connects people who need to outsource tasks and find local services, with people who are looking to earn money and ready to work.",
+      tech: ["React Native", "Redux", "RTK Query"],
+      image: "/projects/marketplace.webp",
+    },
+    {
+      title: "E-commerce Shopping App",
+      description: "Product listing, cart, checkout, Firebase auth.",
+      tech: ["React Native", "Firebase", "Stripe"],
+      image: "/projects/ecommerce.webp",
+    },
+    {
+      title: "Endoscopy Community Platform",
+      description: "Communtiy platform for endoscopy researcher for sharing their research to each other. Post creating with image or video, design a homescreen with listing of pposts, Firebase auth.",
+      tech: ["React Native", "Firebase", "Stripe"],
+      image: "/projects/ecommerce.webp",
+    },
+    // add more projects...
+  ];
+
+  const openModal = (img: string) => {
+    setSelectedImage(img);
+    setModalOpen(true);
+  };
+
   return (
     <main className="min-h-screen px-6 md:px-20 py-12 space-y-28">
       {/* Hero Section */}
@@ -68,87 +108,119 @@ export default function HomePage() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold text-purple-400 text-center mb-8">
-          Projects
+      <section id="projects" className="max-w-6xl mx-auto px-6 py-0">
+        <h2 className="text-3xl font-bold text-purple-400 text-center mb-12">
+          My Projects
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
-            <h3 className="text-xl font-semibold text-white">
-              Showshul - Social Commerce
-            </h3>
-            <p className="text-gray-300 mt-2">
-              Redesigned auth flows, integrated voucher system, post creation UI
-              with multi-step navigation, and location tagging using Google
-              Places API.
-            </p>
-          </div>
-          <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
-            <h3 className="text-xl font-semibold text-white">
-              AstroTalk Clone
-            </h3>
-            <p className="text-gray-300 mt-2">
-              Built chat and wallet system for astrologer consultations with
-              real-time billing based on per-minute pricing.
-            </p>
-          </div>
-          <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
-            <h3 className="text-xl font-semibold text-white">
-              MELD Calculator
-            </h3>
-            <p className="text-gray-300 mt-2">
-              A medical tool to calculate liver disease severity using a mobile
-              app UI and Node.js backend. Hosted with cost-effective AI model
-              integration.
-            </p>
-          </div>
-          <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
-            <h3 className="text-xl font-semibold text-white">
-              Bluetooth Sensor Reader
-            </h3>
-            <p className="text-gray-300 mt-2">
-              Native Android app using Kotlin that connects to Arduino device
-              via Bluetooth, reads and displays live sensor data.
-            </p>
-          </div>
-          <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
-            <h3 className="text-xl font-semibold text-white">
-              Sales & Purchase Ledger
-            </h3>
-            <p className="text-gray-300 mt-2">
-              Full-stack app to manage daily business operations, replacing
-              paper ledgers using React Native and Node.js with secure data
-              storage.
-            </p>
-          </div>
-          <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
-            <h3 className="text-xl font-semibold text-white">
-              Chat App with Socket.IO
-            </h3>
-            <p className="text-gray-300 mt-2">
-              Private 1-on-1 real-time chat app using React Native and Node.js
-              backend with PostgreSQL, Prisma, and WebSocket integration.
-            </p>
-          </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              className="bg-gray-800 rounded-lg p-6 hover:shadow-xl transition-shadow duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <div
+                className="cursor-pointer"
+                onClick={() => openModal(project.image)}
+              >
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={500}
+                  height={300}
+                  className="rounded mb-4 object-cover h-48 w-full"
+                />
+              </div>
+              <h3 className="text-xl font-semibold text-white">
+                {project.title}
+              </h3>
+              <p className="text-gray-300 mt-2">{project.description}</p>
+
+              <div className="flex flex-wrap gap-2 mt-4">
+                {project.tech.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="bg-purple-600 text-sm px-3 py-1 rounded-full text-white"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Lightbox Modal */}
+        <Modal
+          isOpen={modalOpen}
+          onRequestClose={() => setModalOpen(false)}
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80"
+          ariaHideApp={false}
+        >
+          <div className="relative max-w-3xl w-full p-4">
+            <button
+              onClick={() => setModalOpen(false)}
+              className="absolute top-4 right-4 text-white text-xl bg-purple-600 px-3 py-1 rounded"
+            >
+              ✕
+            </button>
+            <Image
+              src={selectedImage}
+              alt="Project Preview"
+              width={800}
+              height={500}
+              className="rounded shadow-lg"
+            />
+          </div>
+        </Modal>
       </section>
 
       {/* Contact Section */}
       <section id="contact" className="max-w-2xl mx-auto text-center">
         <h2 className="text-3xl font-bold text-purple-400 mb-4">Contact Me</h2>
-        <form className="space-y-4">
+        {submitted && (
+          <div className="mb-4 text-green-500 bg-green-100 border border-green-400 px-4 py-2 rounded">
+            ✅ Message sent successfully!
+          </div>
+        )}
+        <form
+          action="https://formsubmit.co/9e9d67fbeea95505c53786ace131c4b5"
+          method="POST"
+          className="space-y-4"
+          onSubmit={() => setSubmitted(true)}
+          target="_blank"
+        >
+          <input type="hidden" name="_captcha" value="false" />
+          <input
+            type="hidden"
+            name="_subject"
+            value="New Portfolio Contact Form Message!"
+          />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://visheshportfolio-vz6w.vercel.app/thanks"
+          />
           <input
             type="text"
+            name="name"
+            required
             placeholder="Your Name"
             className="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400"
           />
           <input
             type="email"
+            name="email"
+            required
             placeholder="Your Email"
             className="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400"
           />
           <textarea
+            name="message"
             rows={4}
+            required
             placeholder="Your Message"
             className="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400"
           ></textarea>
